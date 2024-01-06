@@ -190,7 +190,7 @@ function genTitle(
       post.author.handle || "unknown"
     }`;
   }
-  let title = `Post by ${handle}`;
+  let title=genSnippet(feed);
   if (isReplyRef(reply) && isProfileViewBasic(reply.parent.author)) {
     title = `${title}, reply to ${reply.parent.author.handle || "unknown"}`;
   }
@@ -211,6 +211,17 @@ function genTitle(
   }
   return title;
 }
+
+const MAX_SNIPPET_LENGTH = 1024;
+
+function genSnippet(feed) {
+  const post = getPost(feed.post, false);
+  const reply = (AppBskyFeedDefs.isPostView(feed.reply?.parent))
+  return (
+    sanitize(post.text) ?? (reply && sanitize(reply.text)) ?? `Post by ${handle}`
+  ).substring(0, MAX_SNIPPET_LENGTH);
+}
+
 function genMainContent(
   feed: AtoprotoAPI.AppBskyFeedDefs.FeedViewPost,
   usePsky: boolean,
