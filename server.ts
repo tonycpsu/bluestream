@@ -175,6 +175,9 @@ function isProfileViewBasic(
     Object.hasOwn(v, "handle");
 }
 
+const REPLY_CHAR = "&#x21A9FE0F"
+const REPOST_CHAR = "&#x1F501"
+
 //Repost by user1, original by user2
 //Post by user1
 //Post by user1, quoting user2
@@ -186,9 +189,10 @@ function genTitle(
   const { handle } = author;
   const { post, reason, reply } = feed;
   if (AppBskyFeedDefs.isReasonRepost(reason)) {
-    return `Repost by ${handle}, original by ${
-      post.author.handle || "unknown"
-    }`;
+    // return `Repost by ${handle}, original by ${
+    //   post.author.handle || "unknown"
+    // }`;
+    return `${REPOST_CHAR} ${post.author.handle || "unknown"}`;
   }
   let title=genSnippet(feed);
   if (isReplyRef(reply) && isProfileViewBasic(reply.parent.author)) {
