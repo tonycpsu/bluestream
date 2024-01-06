@@ -396,7 +396,7 @@ Deno.serve(async (request: Request) => {
     },
     tag(
       "channel",
-      tag("title", `Bluestream (${handle})`),
+      tag("title", handle),
       `<atom:link href="${
         sanitize(href)
       }" rel="self" type="application/rss+xml" />`,
