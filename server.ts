@@ -220,7 +220,7 @@ function genTitle(
       }`;
     }
   }
-  return sanitize(stripHtml(title).result);
+  return stripHtml(title).result;
 }
 
 const MAX_SNIPPET_LENGTH = 1024;
@@ -229,7 +229,7 @@ function genSnippet(feed) {
   const post = getPost(feed.post, false);
   const reply = (AppBskyFeedDefs.isPostView(feed.reply?.parent))
   return (
-    sanitize(stripHtml(post.text).result ?? (reply && stripHtml(reply.text).result) ?? `Post by ${handle}`)
+    stripHtml(post.text).result ?? (reply && stripHtml(reply.text).result) ?? `Post by ${handle}`
   ).substring(0, MAX_SNIPPET_LENGTH);
 }
 
