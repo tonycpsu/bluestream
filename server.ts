@@ -280,7 +280,7 @@ function genMainContent(
           ? tag(
             "p",
             //changed "posted" to the post type (posted / replied)
-            `<br>[quote]<br><b>${
+            `<b>${
               sanitize(reply.quote.author.displayName || "")
             }</b> <i>@${
               reply.quote.author.handle || "unknown"
