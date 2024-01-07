@@ -226,7 +226,7 @@ function genSnippet(feed) {
   const post = getPost(feed.post, false);
   const reply = (AppBskyFeedDefs.isPostView(feed.reply?.parent))
   return (
-    stripHtml(post.text) ?? (reply && stripHtml(reply.text)) ?? `Post by ${handle}`
+    stripHtml(post.text).result ?? (reply && stripHtml(reply.text).result) ?? `Post by ${handle}`
   ).substring(0, MAX_SNIPPET_LENGTH);
 }
 
