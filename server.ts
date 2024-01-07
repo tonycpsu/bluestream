@@ -264,7 +264,7 @@ function genMainContent(
     (post.quote)
       ? tag(
         "blockquote",
-        `<br>[quote]<br><b>${
+        `<b>${
           sanitize(post.quote.author.displayName || "")
         }</b> <i>@${post.quote.author.handle || "unknown"}</i>:<br>`,
         post.quote.media,
