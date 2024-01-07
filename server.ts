@@ -177,8 +177,11 @@ function isProfileViewBasic(
     Object.hasOwn(v, "handle");
 }
 
-const REPLY_CHAR = "&#x21a9;&#xfe0f;"
-const REPOST_CHAR = "&#x1F501;"
+// const REPLY_CHAR = "&#x21a9;&#xfe0f;"
+// const REPOST_CHAR = "&#x1F501;"
+
+const REPLY_CHAR = "↩️"
+const REPOST_CHAR = "🔁"
 
 //Repost by user1, original by user2
 //Post by user1
