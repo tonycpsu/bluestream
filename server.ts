@@ -202,7 +202,7 @@ function genTitle(
   }
   if (post.embed) {
     if (AppBskyEmbedRecord.isViewRecord(post.embed.record)) {
-      title = `${title}, quoting ${
+      title = `${title} ${REPLY_CHAR} ${
         post.embed.record.author.handle || "unknown"
       }`;
     } else if (
@@ -210,7 +210,7 @@ function genTitle(
       AppBskyEmbedRecord.isViewRecord(post.embed.record.record)
     ) {
       // NOTE: checking viewRecord may need here
-      title = `${title}, quoting ${
+      title = `${title} ${REPLY_CHAR} ${
         post.embed.record.record.author.handle || "unknown"
       }`;
     }
