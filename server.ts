@@ -269,11 +269,11 @@ function genMainContent(
     (replyContext && reply)
       ? tag(
         "p",
-        "<hr><hr>",
+        "<hr>",
         //changed "posted" to the post type (posted / replied)
         `<b>${sanitize(reply.author.displayName || "")}</b> <i>@${
           reply.author.handle || "unknown"
-        }</i> posted:<br>`,
+        }</i>:<br>`,
         reply.media,
         tag("p", reply.text),
         (reply.quote)
@@ -284,9 +284,9 @@ function genMainContent(
               sanitize(reply.quote.author.displayName || "")
             }</b> <i>@${
               reply.quote.author.handle || "unknown"
-            }</i> posted:<br>`,
+            }</i>:<br>`,
             reply.quote.media,
-            tag("p", reply.quote.text),
+            tag("blockquote", reply.quote.text),
           )
           : "",
       )
