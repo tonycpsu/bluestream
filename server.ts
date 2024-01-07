@@ -175,7 +175,7 @@ function isProfileViewBasic(
     Object.hasOwn(v, "handle");
 }
 
-const REPLY_CHAR = "&#x21a9;"
+const REPLY_CHAR = "&#x21a9;&#xfe0f;"
 const REPOST_CHAR = "&#x1F501;"
 
 //Repost by user1, original by user2
@@ -197,7 +197,7 @@ function genTitle(
   let title=genSnippet(feed);
   if (isReplyRef(reply) && isProfileViewBasic(reply.parent.author)) {
 
-    title = `${REPLY_CHAR}, reply to ${reply.parent.author.handle || "unknown"}: ${title}`;
+    title = `${REPLY_CHAR} ${reply.parent.author.handle || "unknown"}: ${title}`;
     // title = `${title}, reply to ${reply.parent.author.handle || "unknown"}`;
   }
   if (post.embed) {
