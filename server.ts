@@ -4,6 +4,8 @@ import { toUTCString, uriToPostLink } from "./utils.ts";
 
 import { sanitize, tagNoVoid as tag } from "markup_tag";
 
+import { stripHtml } from "string-strip-html";
+
 import AtoprotoAPI, { AppBskyActorDefs } from "@atproto/api";
 const {
   // AppBskyActorDefsをimportしていても一部でcannot find namespaceエラーが出る
@@ -224,7 +226,7 @@ function genSnippet(feed) {
   const post = getPost(feed.post, false);
   const reply = (AppBskyFeedDefs.isPostView(feed.reply?.parent))
   return (
-    sanitize(post.text) ?? (reply && sanitize(reply.text)) ?? `Post by ${handle}`
+    stripHtml(post.text) ?? (reply && stripHtml(reply.text)) ?? `Post by ${handle}`
   ).substring(0, MAX_SNIPPET_LENGTH);
 }
 
