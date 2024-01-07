@@ -196,7 +196,9 @@ function genTitle(
   }
   let title=genSnippet(feed);
   if (isReplyRef(reply) && isProfileViewBasic(reply.parent.author)) {
-    title = `${title}, reply to ${reply.parent.author.handle || "unknown"}`;
+
+    title = `${REPLY_CHAR}, reply to ${reply.parent.author.handle || "unknown"}: ${title}`;
+    // title = `${title}, reply to ${reply.parent.author.handle || "unknown"}`;
   }
   if (post.embed) {
     if (AppBskyEmbedRecord.isViewRecord(post.embed.record)) {
