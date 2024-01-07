@@ -220,7 +220,7 @@ function genTitle(
       }`;
     }
   }
-  return title;
+  return sanitize(stripHtml(title).result);
 }
 
 const MAX_SNIPPET_LENGTH = 1024;
