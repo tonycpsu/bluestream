@@ -188,13 +188,13 @@ function genTitle(
 ) {
   const { handle } = author;
   const { post, reason, reply } = feed;
+  let title=genSnippet(feed);
   if (AppBskyFeedDefs.isReasonRepost(reason)) {
     // return `Repost by ${handle}, original by ${
     //   post.author.handle || "unknown"
     // }`;
-    return `${REPOST_CHAR} ${post.author.handle || "unknown"}`;
+    title = `${REPOST_CHAR} ${post.author.handle || "unknown"}: ${title}`;
   }
-  let title=genSnippet(feed);
   if (isReplyRef(reply) && isProfileViewBasic(reply.parent.author)) {
 
     title = `${REPLY_CHAR} ${reply.parent.author.handle || "unknown"}: ${title}`;
