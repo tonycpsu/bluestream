@@ -259,8 +259,8 @@ function genMainContent(
 
   return [
     "<![CDATA[",
-    post.media,
     tag("p", post.text),
+    post.media,
     (post.quote)
       ? tag(
         "blockquote",
@@ -279,8 +279,8 @@ function genMainContent(
         `<b>${sanitize(reply.author.displayName || "")}</b> <i>@${
           reply.author.handle || "unknown"
         }</i>:<br>`,
-        reply.media,
         tag("p", reply.text),
+        reply.media,
         (reply.quote)
           ? tag(
             "p",
