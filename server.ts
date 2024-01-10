@@ -198,11 +198,11 @@ function genTitle(
     // return `Repost by ${handle}, original by ${
     //   post.author.handle || "unknown"
     // }`;
-    title = `${REPOST_CHAR} ${post.author.handle || "unknown"}: ${title}`;
+    title = `(${REPOST_CHAR}) ${post.author.handle || "unknown"}: ${title}`;
   }
   if (isReplyRef(reply) && isProfileViewBasic(reply.parent.author)) {
 
-    title = `${REPLY_CHAR} ${reply.parent.author.handle || "unknown"}: ${title}`;
+    title = `(${REPLY_CHAR}) ${reply.parent.author.handle || "unknown"}: ${title}`;
     // title = `${title}, reply to ${reply.parent.author.handle || "unknown"}`;
   }
   if (post.embed) {
