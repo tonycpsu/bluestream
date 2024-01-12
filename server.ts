@@ -181,7 +181,7 @@ function isProfileViewBasic(
 // const REPOST_CHAR = "&#x1F501;"
 
 const REPLY_CHAR = "Re"
-const REPOST_CHAR = "Rp"
+const REPOST_CHAR = "RP"
 
 //Repost by user1, original by user2
 //Post by user1
