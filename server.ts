@@ -295,32 +295,10 @@ function genMainContent(
     tag("p", post.text),
     post.media,
     (post.quote)
-      ? tag(
-        "blockquote",
-        `<b>${
-          sanitize(post.quote.author.displayName || "")
-        }</b> <i>@${post.quote.author.handle || "unknown"}</i>:<br>`,
-        post.quote.media,
-        tag("p", post.quote.text),
-      )
+      ? quoteBlock(post.quote)
       : "",
     (replyContext && reply)
-    ? quoteBlock(reply)
-      // ? tag(
-      //   "p",
-      //   "<hr>",
-      //   //changed "posted" to the post type (posted / replied)
-      //   `<b>${sanitize(reply.author.displayName || "")}</b> <i>@${
-      //     reply.author.handle || "unknown"
-      //   }</i>:<br>`,
-      //   tag("p", reply.text),
-      //   reply.media,
-      //   (reply.quote)
-      //     ? tag(
-      //       "p",
-      //       quoteBlock(reply.quote)
-      //     ): "",
-      // )
+      ? quoteBlock(reply)
       : "",
     "]]>",
   ];
