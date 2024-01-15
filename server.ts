@@ -284,14 +284,27 @@ function genMainContent(
         (reply.quote)
           ? tag(
             "p",
-            //changed "posted" to the post type (posted / replied)
-            `<b>${
-              sanitize(reply.quote.author.displayName || "")
-            }</b> <i>@${
-              reply.quote.author.handle || "unknown"
-            }</i>:<br>`,
-            reply.quote.media,
-            tag("blockquote", reply.quote.text),
+
+            // //changed "posted" to the post type (posted / replied)
+            // `<b>${
+            //   sanitize(reply.quote.author.displayName || "")
+            // }</b> <i>@${
+            //   reply.quote.author.handle || "unknown"
+            // }</i>:<br>`,
+            // reply.quote.media,
+            // tag("blockquote", reply.quote.text),
+
+            tag("details",
+                tag("summary",
+                    `<b>${
+                         sanitize(reply.quote.author.displayName || "")
+                     }</b> <i>@${
+                         reply.quote.author.handle || "unknown"
+                     }</i>:<br>`
+                   ),
+                tag("blockquote", reply.quote.text),
+                reply.quote.media
+               ),
           )
           : "",
       )
