@@ -257,7 +257,12 @@ function quoteBlock(post) {
         }</b> <i>@${
         post.author.handle || "unknown"
         }</i>: ${truncateAfterWord(post.text, 100)}`,
-    tag("blockquote", `${post.text}<br>${post.media}`)
+    tag(
+      "blockquote",
+        `${post.text}<br>${post.media}<br>${
+           (post.quote) ? quoteBlock(post.quote) : ""
+        }`
+    )
   )
 }
 
@@ -300,29 +305,22 @@ function genMainContent(
       )
       : "",
     (replyContext && reply)
-      ? tag(
-        "p",
-        "<hr>",
-        //changed "posted" to the post type (posted / replied)
-        `<b>${sanitize(reply.author.displayName || "")}</b> <i>@${
-          reply.author.handle || "unknown"
-        }</i>:<br>`,
-        tag("p", reply.text),
-        reply.media,
-        (reply.quote)
-          ? tag(
-            "p",
-            // //changed "posted" to the post type (posted / replied)
-            // `<b>${
-            //   sanitize(reply.quote.author.displayName || "")
-            // }</b> <i>@${
-            //   reply.quote.author.handle || "unknown"
-            // }</i>:<br>`,
-            // reply.quote.media,
-            // tag("blockquote", reply.quote.text),
-            quoteBlock(reply.quote)
-          ): "",
-      )
+    ? quoteBlock(reply)
+      // ? tag(
+      //   "p",
+      //   "<hr>",
+      //   //changed "posted" to the post type (posted / replied)
+      //   `<b>${sanitize(reply.author.displayName || "")}</b> <i>@${
+      //     reply.author.handle || "unknown"
+      //   }</i>:<br>`,
+      //   tag("p", reply.text),
+      //   reply.media,
+      //   (reply.quote)
+      //     ? tag(
+      //       "p",
+      //       quoteBlock(reply.quote)
+      //     ): "",
+      // )
       : "",
     "]]>",
   ];
