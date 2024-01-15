@@ -238,6 +238,27 @@ const truncateAfterWord = (str, chars, placeholder = '…') =>
 str.substr( 0, str.substr(0, chars - placeholder.length).lastIndexOf(" "))
 }${placeholder}`;
 
+function detailsBlock(summary: string, details: string) {
+  return tag(
+    "details",
+    tag("summary",
+        summary)
+    details
+  )
+}
+
+function quoteBlock(post) {
+
+  return detailsBlock(
+    `<b>${
+        sanitize(post.author.displayName || "")
+        }</b> <i>@${
+        post.author.handle || "unknown"
+        }</i>: ${truncateAfterWord(post.text, 100)}`,
+    tag("blockquote", `${post.text}<br>${post.media}`)
+  )
+}
+
 function genMainContent(
   feed: AtoprotoAPI.AppBskyFeedDefs.FeedViewPost,
   usePsky: boolean,
@@ -297,20 +318,8 @@ function genMainContent(
             // }</i>:<br>`,
             // reply.quote.media,
             // tag("blockquote", reply.quote.text),
-
-            tag("details",
-                tag("summary",
-                    `<b>${
-                         sanitize(reply.quote.author.displayName || "")
-                     }</b> <i>@${
-                         reply.quote.author.handle || "unknown"
-                     }</i>: {truncateAfterWord(reply.quote.text, 100)}<br>`
-                   ),
-                tag("blockquote", reply.quote.text),
-                reply.quote.media
-               ),
-          )
-          : "",
+            quoteBlock(reply.quote)
+          ): "",
       )
       : "",
     "]]>",
