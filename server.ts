@@ -241,8 +241,10 @@ str.substr( 0, str.substr(0, chars - placeholder.length).lastIndexOf(" "))
 function detailsBlock(summary: string, details: string) {
   return tag(
     "details",
-    tag("summary",
-        summary)
+    tag(
+      "summary",
+      summary
+    ),
     details
   )
 }
