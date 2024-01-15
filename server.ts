@@ -233,6 +233,11 @@ function genSnippet(feed) {
   ).substring(0, MAX_SNIPPET_LENGTH);
 }
 
+const truncateAfterWord = (str, chars, placeholder = '…') =>
+  (str.length) < chars ? str : `${
+str.substr( 0, str.substr(0, chars - placeholder.length).lastIndexOf(" "))
+}${placeholder}`;
+
 function genMainContent(
   feed: AtoprotoAPI.AppBskyFeedDefs.FeedViewPost,
   usePsky: boolean,
@@ -284,7 +289,6 @@ function genMainContent(
         (reply.quote)
           ? tag(
             "p",
-
             // //changed "posted" to the post type (posted / replied)
             // `<b>${
             //   sanitize(reply.quote.author.displayName || "")
@@ -300,7 +304,7 @@ function genMainContent(
                          sanitize(reply.quote.author.displayName || "")
                      }</b> <i>@${
                          reply.quote.author.handle || "unknown"
-                     }</i>:<br>`
+                     }</i>: {truncateAfterWord(reply.quote.text, 100)}<br>`
                    ),
                 tag("blockquote", reply.quote.text),
                 reply.quote.media
