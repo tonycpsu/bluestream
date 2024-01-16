@@ -58,7 +58,7 @@ function getPost(
           `<img src="${
             fullMedia ? image.fullsize : image.thumb
           }"/><figcaption>${image.alt}</figcaption>`,
-          "<br/>",
+          "<br>",
         );
       }),
     )
@@ -151,7 +151,7 @@ function processText(
     });
   }
 
-  text = sanitize(text).replace(/\n/g, "<br/>");
+  text = sanitize(text).replace(/\n/g, "<br>");
   if (arr.length > 0) {
     arr.forEach((feature) => {
       text = text.replace(
@@ -259,7 +259,7 @@ function quoteBlock(post) {
         }</i>: ${truncateAfterWord(post.text, 100)}`,
     tag(
       "blockquote",
-        `${post.text}<br/>${post.media}<br/>${
+        `${post.text}<br>${post.media}<br>${
            (post.quote) ? quoteBlock(post.quote) : ""
         }`
     )
@@ -291,7 +291,7 @@ function genMainContent(
   }
 
   return [
-    // "<![CDATA[",
+    "<![CDATA[",
     tag("p", post.text),
     post.media,
     (post.quote)
@@ -300,7 +300,7 @@ function genMainContent(
     (replyContext && reply)
       ? quoteBlock(reply)
       : "",
-    // "]]>",
+    "]]>",
   ];
 }
 
