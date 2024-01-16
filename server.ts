@@ -291,7 +291,7 @@ function genMainContent(
   }
 
   return [
-    "<![CDATA[",
+    // "<![CDATA[",
     tag("p", post.text),
     post.media,
     (post.quote)
@@ -300,7 +300,7 @@ function genMainContent(
     (replyContext && reply)
       ? quoteBlock(reply)
       : "",
-    "]]>",
+    // "]]>",
   ];
 }
 
